@@ -3,7 +3,7 @@ using UnityEngine;
 public abstract class PrimaryWeapon : ScriptableObject
 {
     public string weaponName;
-    public GameObject weaponModel;
+    public GameObject model;
 
     public int damage;
     public Rank rank;

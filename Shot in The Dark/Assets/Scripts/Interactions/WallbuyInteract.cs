@@ -4,7 +4,7 @@ namespace Luci.Interactions
 {
     public class WallbuyInteract : MonoBehaviour, IInteractable
     {
-        public InteractType interactType = InteractType.WallBuy;
+        public InteractType interactType = InteractType.Purchasable;
         public PrimaryWeapon weapon; // weapon to buy, includes its name.
         public GunMainScript gunScript;
         public int cost = 750; // 750: default cost for wallbuy weapon

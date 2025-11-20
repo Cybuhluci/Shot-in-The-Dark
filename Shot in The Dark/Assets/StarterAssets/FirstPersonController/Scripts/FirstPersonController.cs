@@ -1,5 +1,4 @@
-﻿// (permalink placeholder) url=https://github.com/Cybuhluci/Shot-in-The-Dark/blob/main/FirstPersonMovement2.cs
-using UnityEngine;
+﻿using UnityEngine;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
@@ -13,6 +12,8 @@ namespace StarterAssets
     public class FirstPersonController : MonoBehaviour
     {
         public enum PlayerState { Standing, Crouching, Proning }
+        public bool CameraDisable = false;
+        public bool MovementDisable = false;
 
         [Header("Player")]
         public float MoveSpeed = 4.0f;
@@ -197,10 +198,14 @@ namespace StarterAssets
                 if (consoleManager.consoleActive)
                 {
                     Cursor.lockState = CursorLockMode.None;
+                    ToggleDisableCamera(true);
+                    ToggleDisableMovement(true);
                 }
                 else
                 {
                     Cursor.lockState = CursorLockMode.Locked;
+                    ToggleDisableCamera(false);
+                    ToggleDisableMovement(false);
                 }
             }
         }
@@ -219,6 +224,7 @@ namespace StarterAssets
 
         private void HandleInputsAndStates()
         {
+            if (MovementDisable) return;
 #if ENABLE_INPUT_SYSTEM
             bool crouchPressed = _playerInput.actions["Crouch"].WasPressedThisFrame();
             bool pronePressed = _playerInput.actions["Prone"] != null && _playerInput.actions["Prone"].WasPressedThisFrame();
@@ -359,6 +365,7 @@ namespace StarterAssets
 
         private void CameraRotation()
         {
+            if (CameraDisable) return;
 #if ENABLE_INPUT_SYSTEM
             Vector2 look = _playerInput.actions["Look"].ReadValue<Vector2>() * MouseSensitivity;
 #else
@@ -388,6 +395,7 @@ namespace StarterAssets
 
         private void Move()
         {
+            if (MovementDisable) return;
 #if ENABLE_INPUT_SYSTEM
             bool sprint = _playerInput.actions["Sprint"].IsPressed();
             Vector2 move = _playerInput.actions["Move"].ReadValue<Vector2>();
@@ -508,6 +516,7 @@ namespace StarterAssets
 
         private void JumpAndGravity()
         {
+            if (MovementDisable) return;
 #if ENABLE_INPUT_SYSTEM
             bool jump = _playerInput.actions["Jump"].WasPressedThisFrame();
 #else
@@ -572,6 +581,16 @@ namespace StarterAssets
 #else
 			return true;
 #endif
+        }
+
+        public void ToggleDisableCamera(bool set)
+        {
+            CameraDisable = set;
+        }
+
+        public void ToggleDisableMovement(bool set)
+        {
+            MovementDisable = set;
         }
 
         private void OnDrawGizmosSelected()

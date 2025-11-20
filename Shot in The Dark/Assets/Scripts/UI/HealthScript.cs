@@ -25,4 +25,17 @@ public class HealthScript : MonoBehaviour
             //link to die script later
         }
     }
+
+    public void ChangeMaxHealth(int amount, bool direction)
+    {
+        if (direction)
+        {
+            maxHealth += amount;
+            AddHealth(amount);
+        }
+        else
+        {
+            maxHealth -= amount;
+        }
+    }
 }

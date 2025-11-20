@@ -102,12 +102,12 @@ public class GunMainScript : MonoBehaviour
              else
              {
                  ExchangeWeapon(currentWeaponIndex, weapon);
-            }
-        }
+             }
+         }
          else
          {
              Debug.Log("Not enough points to buy weapon!");
-        }
+         }
     }
 
     // Add a new weapon (if inventory not full)
@@ -118,12 +118,12 @@ public class GunMainScript : MonoBehaviour
             Debug.LogWarning("Weapon inventory full!");
             return;
         }
-        if (weaponData.weaponModel == null)
+        if (weaponData.model == null)
         {
             Debug.LogError($"Weapon data {weaponData.weaponName} has no weaponModel assigned!");
             return;
         }
-        GameObject model = Instantiate(weaponData.weaponModel, weaponHolder.transform);
+        GameObject model = Instantiate(weaponData.model, weaponHolder.transform);
         model.SetActive(false); // Hide by default
         WeaponInstance instance = new WeaponInstance { weaponData = weaponData, weaponModel = model };
         weapons.Add(instance);
@@ -137,12 +137,12 @@ public class GunMainScript : MonoBehaviour
         if (index < 0 || index >= weapons.Count) return;
         RemoveWeapon(index);
         // Insert new weapon at the same index
-        if (newWeaponData.weaponModel == null)
+        if (newWeaponData.model == null)
         {
             Debug.LogError($"Weapon data {newWeaponData.weaponName} has no weaponModel assigned!");
             return;
         }
-        GameObject model = Instantiate(newWeaponData.weaponModel, weaponHolder.transform);
+        GameObject model = Instantiate(newWeaponData.model, weaponHolder.transform);
         model.SetActive(false);
         WeaponInstance instance = new WeaponInstance { weaponData = newWeaponData, weaponModel = model };
         weapons.Insert(index, instance);

@@ -8,7 +8,7 @@ public enum InteractType
     Pickup,
     Door,
     MysteryBox,
-    WallBuy,
+    Purchasable, // "buy" interaction
     Other
 }
 
@@ -36,7 +36,7 @@ namespace Luci.Interactions
 
         // Hold interact support
         private float holdTimer = 0f;
-        private const float holdDuration = 0.5f;
+        private const float holdDuration = 0.2f;
         private bool isHolding = false;
         private bool hasInteracted = false;
 
@@ -148,6 +148,7 @@ namespace Luci.Interactions
                     var typeField = mb.GetType().GetField("interactType");
                     var priceField = mb.GetType().GetField("cost");
                     var holdField = mb.GetType().GetField("isHoldInteract");
+                    var perkField = mb.GetType().GetField("perk");
                     var weaponField = mb.GetType().GetField("weapon");
 
                     string prompt = promptField != null ? (string)promptField.GetValue(mb) : null;
@@ -155,14 +156,20 @@ namespace Luci.Interactions
                     int price = priceField != null ? (int)priceField.GetValue(mb) : 0;
                     bool isHold = holdField != null && (bool)holdField.GetValue(mb);
 
-                    string weaponName = "";
-                    if (type == InteractType.WallBuy && weaponField != null)
+                    string objectName = "";
+                    // Try to get perk name
+                    if (perkField != null)
+                    {
+                        var perkObj = perkField.GetValue(mb) as PerkACola;
+                        if (perkObj != null)
+                            objectName = perkObj.perkName;
+                    }
+                    // Try to get weapon name if not found
+                    if (string.IsNullOrEmpty(objectName) && weaponField != null)
                     {
                         var weaponObj = weaponField.GetValue(mb) as PrimaryWeapon;
                         if (weaponObj != null)
-                        {
-                            weaponName = weaponObj.weaponName;
-                        }
+                            objectName = weaponObj.weaponName;
                     }
 
                     string actionText = isHold ? "Hold F" : "Press F";
@@ -181,7 +188,7 @@ namespace Luci.Interactions
                             case InteractType.MysteryBox:
                                 typePrompt = "use Mystery Box"; // has cost
                                 break;
-                            case InteractType.WallBuy:
+                            case InteractType.Purchasable:
                                 typePrompt = "buy"; // has cost
                                 break;
                             default:
@@ -204,9 +211,9 @@ namespace Luci.Interactions
                         text = $"{actionText} to {typePrompt}";
                     }
 
-                    // For wallbuys, append weapon name
-                    if (type == InteractType.WallBuy && !string.IsNullOrEmpty(weaponName))
-                        text += $" {weaponName}";
+                    // For Purchasables, append object name (perk or weapon)
+                    if (type == InteractType.Purchasable && !string.IsNullOrEmpty(objectName))
+                        text += $" {objectName}";
 
                     if (price > 0)
                         text += $" [Cost: {price}]";
