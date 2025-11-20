@@ -107,6 +107,7 @@ namespace StarterAssets
 #endif
         private CharacterController _controller;
         private GameObject _mainCamera;
+        public ConsoleManager consoleManager;
 
         private const float _threshold = 0.01f;
 
@@ -128,7 +129,7 @@ namespace StarterAssets
         // For dynamic ground check adjustment
         private float _originalGroundedRadius;
         private float _originalGroundedOffset;
-        public float DiveGroundedRadius =0.7f; // larger radius for dive
+        public float DiveGroundedRadius = 0.7f; // larger radius for dive
         public float DiveGroundedOffset = -0.22f; // closer to ground for dive
 
         private void Awake()
@@ -184,6 +185,24 @@ namespace StarterAssets
             JumpAndGravity();
             GroundedCheck();
             Move();
+            DeveloperConsoleBind();
+        }
+
+        void DeveloperConsoleBind()
+        {
+            var consoleEnabled = consoleManager.consoleActive;
+            if (_playerInput.actions["Console"].WasPressedThisFrame())
+            {
+                consoleManager.ToggleConsole();
+                if (consoleManager.consoleActive)
+                {
+                    Cursor.lockState = CursorLockMode.None;
+                }
+                else
+                {
+                    Cursor.lockState = CursorLockMode.Locked;
+                }
+            }
         }
 
         private void LateUpdate()

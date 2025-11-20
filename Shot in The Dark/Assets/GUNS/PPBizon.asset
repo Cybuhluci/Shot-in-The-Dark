@@ -10,26 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 40d76f75546258b4a854d0ffdde9ff44, type: 3}
-  m_Name: M1911 1
+  m_Name: PPBizon
   m_EditorClassIdentifier: Assembly-CSharp::Gun
-  weaponName: AK
-  weaponModel: {fileID: 4019129676073355648, guid: f01ab786ffc38f0449e5cddf1ae4fe54, type: 3}
-  damage: 25
+  weaponName: PP-Bizon
+  weaponModel: {fileID: 4019129676073355648, guid: de0a01ac9f42999499d69c4be6a9618d, type: 3}
+  damage: 10
   rank: 1
   packAPunchLevel: 0
-  magazineSize: 0
-  reserveAmmo: 0
-  maxReserveAmmo: 0
-  fireRate: 0
-  bulletsPerShot: 0
-  penetrationPower: 0
-  reloadTime: 0
+  gunType: 1
+  fireMode: 2
+  fireRate: 1100
+  magazineSize: 32
+  reserveAmmo: 128
+  maxReserveAmmo: 256
+  bulletsPerShot: 1
+  penetrationPower: 1
+  reloadTime: 3
   bodyLocationMultipliers:
   - target: 0
-    multiplier: 0
+    multiplier: 1
   - target: 1
-    multiplier: 0
+    multiplier: 1
   - target: 2
-    multiplier: 0
+    multiplier: 1
   - target: 3
-    multiplier: 0
+    multiplier: 1

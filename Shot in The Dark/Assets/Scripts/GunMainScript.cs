@@ -19,6 +19,8 @@ public class GunMainScript : MonoBehaviour
     public GameObject weaponHolder; // assign in inspector
     public PrimaryWeapon StartingWeaponData; // assign in inspector (ScriptableObject)
 
+    public PointsScript pointsScript;
+
     public int currentWeaponIndex = 0;
 
     private void Start()
@@ -35,6 +37,34 @@ public class GunMainScript : MonoBehaviour
         else if (playerInput.actions["Previous"].triggered)
         {
             SwitchWeapon(-1);
+        }
+
+        // Shooting
+        if (playerInput.actions["Fire"].IsPressed())
+        {
+            var gunController = GetCurrentWeaponModel()?.GetComponent<GunController>();
+            if (gunController != null)
+            {
+                bool fireInput = playerInput.actions["Fire"].IsPressed();
+                bool fireInputDown = playerInput.actions["Fire"].WasPressedThisFrame();
+                gunController.TryFire(fireInput, fireInputDown);
+            }
+            else
+            {
+                var meleeController = GetCurrentWeaponModel()?.GetComponent<MeleeController>();
+                if (meleeController != null)
+                {
+                    bool fireInput = playerInput.actions["Fire"].IsPressed();
+                    bool fireInputDown = playerInput.actions["Fire"].WasPressedThisFrame();
+                    meleeController.TryAttack(fireInput, fireInputDown);
+                }
+            }
+        }
+        // Reloading
+        if (playerInput.actions["Reload"].WasPressedThisFrame())
+        {
+            var gunController = GetCurrentWeaponModel()?.GetComponent<GunController>();
+            gunController?.Reload();
         }
     }
 
@@ -56,6 +86,27 @@ public class GunMainScript : MonoBehaviour
         {
             if (weapons[i].weaponModel != null)
                 weapons[i].weaponModel.SetActive(i == currentWeaponIndex);
+        }
+    }
+
+    public void BuyWeapon(PrimaryWeapon weapon, int cost)
+    {
+         if (pointsScript.CanAfford(cost))
+         {
+             pointsScript.RemovePoints(cost);
+             
+             if (weapons.Count < maxWeapons)
+             {
+                 AddNewWeapon(weapon);
+             }
+             else
+             {
+                 ExchangeWeapon(currentWeaponIndex, weapon);
+            }
+        }
+         else
+         {
+             Debug.Log("Not enough points to buy weapon!");
         }
     }
 
@@ -123,5 +174,15 @@ public class GunMainScript : MonoBehaviour
     {
         if (weapons.Count == 0) return null;
         return weapons[currentWeaponIndex].weaponModel;
+    }
+
+    public GunController GunController()
+    {
+        return GetCurrentWeaponModel()?.GetComponent<GunController>();
+    }
+
+    public MeleeController MeleeController()
+    {
+        return GetCurrentWeaponModel()?.GetComponent<MeleeController>();
     }
 }

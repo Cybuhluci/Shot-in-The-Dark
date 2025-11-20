@@ -17,19 +17,21 @@ MonoBehaviour:
   damage: 20
   rank: 1
   packAPunchLevel: 0
-  magazineSize: 0
-  reserveAmmo: 0
-  maxReserveAmmo: 0
-  fireRate: 0
-  bulletsPerShot: 0
-  penetrationPower: 0
-  reloadTime: 0
+  gunType: 0
+  fireMode: 0
+  fireRate: 2000
+  magazineSize: 8
+  reserveAmmo: 32
+  maxReserveAmmo: 80
+  bulletsPerShot: 1
+  penetrationPower: 1
+  reloadTime: 2
   bodyLocationMultipliers:
   - target: 0
-    multiplier: 0
+    multiplier: 1
   - target: 1
-    multiplier: 0
+    multiplier: 1
   - target: 2
-    multiplier: 0
+    multiplier: 1
   - target: 3
-    multiplier: 0
+    multiplier: 1

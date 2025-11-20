@@ -5,4 +5,5 @@ public class Melee : PrimaryWeapon
 {
     public float swingSpeed;
     public float reach;
+    public GunType gunType = GunType.Melee;
 }

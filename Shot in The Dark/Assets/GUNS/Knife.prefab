@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 647687903023375004}
   - component: {fileID: 6397397768307184816}
   - component: {fileID: 8839365305577108578}
+  - component: {fileID: 8446976784943584602}
   m_Layer: 7
   m_Name: Knife
   m_TagString: Untagged
@@ -89,3 +90,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8446976784943584602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4019129676073355648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32b01823d398db48851fa5500eaedea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MeleeController
+  meleeData: {fileID: 11400000, guid: 9b2ba6aa8c9c574468e32de6649a9b12, type: 2}

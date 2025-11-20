@@ -15,11 +15,13 @@ MonoBehaviour:
   Guns:
   - Name: 1911
     Gun: {fileID: 11400000, guid: bd43a4224e19dbf4f9ab2238df472588, type: 2}
-  - Name: ak
+  - Name: AK
     Gun: {fileID: 11400000, guid: 40593b165d4762b4c91ff17b6bcba4b5, type: 2}
-  - Name: barrett
+  - Name: Barrett
     Gun: {fileID: 11400000, guid: 73f7085e64f9faf478f778a97da8eb93, type: 2}
-  - Name: ppbizon
+  - Name: PPBizon
     Gun: {fileID: 11400000, guid: 15e7c40ab249f9b4e92da398a6a6d835, type: 2}
-  - Name: rpk
+  - Name: RPK
     Gun: {fileID: 11400000, guid: b502f84f38c1510459330cd8553a856d, type: 2}
+  - Name: Knife
+    Gun: {fileID: 11400000, guid: 9b2ba6aa8c9c574468e32de6649a9b12, type: 2}

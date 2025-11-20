@@ -24,10 +24,7 @@ namespace Luci.Interactions
         public LayerMask interactableLayer;
         public PlayerInput playerInput;
 
-        public float prefabheight;
-
         public TMP_Text InteractTextUI;
-        public GameObject currentIconInstance;
 
         public float interactionRadius = 3f;
         public List<IInteractable> interactableList = new List<IInteractable>();
@@ -80,9 +77,6 @@ namespace Luci.Interactions
                 currentInteractable = null;
                 currentTargetTransform = null;
                 currentIndex = 0;
-
-                if (currentIconInstance != null)
-                    Destroy(currentIconInstance);
             }
             else
             {
@@ -151,17 +145,69 @@ namespace Luci.Interactions
                 if (mb != null)
                 {
                     var promptField = mb.GetType().GetField("interactPrompt");
-                    var priceField = mb.GetType().GetField("price");
+                    var typeField = mb.GetType().GetField("interactType");
+                    var priceField = mb.GetType().GetField("cost");
                     var holdField = mb.GetType().GetField("isHoldInteract");
+                    var weaponField = mb.GetType().GetField("weapon");
 
-                    string prompt = promptField != null ? (string)promptField.GetValue(mb) : "Press F to interact";
+                    string prompt = promptField != null ? (string)promptField.GetValue(mb) : null;
+                    InteractType type = typeField != null ? (InteractType)typeField.GetValue(mb) : InteractType.Other;
                     int price = priceField != null ? (int)priceField.GetValue(mb) : 0;
                     bool isHold = holdField != null && (bool)holdField.GetValue(mb);
 
+                    string weaponName = "";
+                    if (type == InteractType.WallBuy && weaponField != null)
+                    {
+                        var weaponObj = weaponField.GetValue(mb) as PrimaryWeapon;
+                        if (weaponObj != null)
+                        {
+                            weaponName = weaponObj.weaponName;
+                        }
+                    }
+
                     string actionText = isHold ? "Hold F" : "Press F";
-                    string text = prompt;
-                    if (!string.IsNullOrEmpty(prompt) && !prompt.ToLower().Contains("press f") && !prompt.ToLower().Contains("hold f"))
-                        text = $"{actionText} to {prompt}";
+                    string typePrompt = "";
+
+                    if (string.IsNullOrEmpty(prompt))
+                    {
+                        switch (type)
+                        {
+                            case InteractType.Pickup:
+                                typePrompt = "pickup";
+                                break;
+                            case InteractType.Door:
+                                typePrompt = "open door"; // has cost
+                                break;
+                            case InteractType.MysteryBox:
+                                typePrompt = "use Mystery Box"; // has cost
+                                break;
+                            case InteractType.WallBuy:
+                                typePrompt = "buy"; // has cost
+                                break;
+                            default:
+                                typePrompt = "interact";
+                                break;
+                        }
+                    }
+
+                    string text;
+                    if (!string.IsNullOrEmpty(prompt))
+                    {
+                        // If prompt already contains "Press F" or "Hold F", use as is
+                        if (prompt.ToLower().Contains("press f") || prompt.ToLower().Contains("hold f"))
+                            text = prompt;
+                        else
+                            text = $"{actionText} to {prompt}";
+                    }
+                    else
+                    {
+                        text = $"{actionText} to {typePrompt}";
+                    }
+
+                    // For wallbuys, append weapon name
+                    if (type == InteractType.WallBuy && !string.IsNullOrEmpty(weaponName))
+                        text += $" {weaponName}";
+
                     if (price > 0)
                         text += $" [Cost: {price}]";
 
@@ -179,6 +225,12 @@ namespace Luci.Interactions
                 InteractTextUI.text = "";
                 InteractTextUI.enabled = false;
             }
+        }
+
+        void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, interactionRadius);
         }
     }
 }

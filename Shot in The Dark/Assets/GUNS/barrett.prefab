@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 647687903023375004}
   - component: {fileID: 6397397768307184816}
   - component: {fileID: 8839365305577108578}
+  - component: {fileID: -1915464990669698106}
   m_Layer: 7
   m_Name: barrett
   m_TagString: Untagged
@@ -89,3 +90,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-1915464990669698106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4019129676073355648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 009426234a0c52443aefd6e9eacb9972, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GunController
+  gunData: {fileID: 11400000, guid: 73f7085e64f9faf478f778a97da8eb93, type: 2}

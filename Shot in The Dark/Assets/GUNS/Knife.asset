@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Melee
   weaponName: Knife
   weaponModel: {fileID: 4019129676073355648, guid: b8cfabf1b3f8cf84a89f8d5df1cd0e3d, type: 3}
-  damage: 0
-  rank: 0
+  damage: 150
+  rank: 1
   packAPunchLevel: 0
-  swingSpeed: 0
-  reach: 0
+  swingSpeed: 100
+  reach: 1
