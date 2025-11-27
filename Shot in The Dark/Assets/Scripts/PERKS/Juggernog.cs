@@ -11,15 +11,15 @@ public class Juggernog : MonoBehaviour
         healthScript = GetComponent<HealthScript>();
         if (healthScript != null)
         {
-            healthScript.ChangeMaxHealth(healthIncrease, true);
+            healthScript.ChangeMaxHealth(healthIncrease, true); // increase max health
         }
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         if (healthScript != null)
         {
-            healthScript.ChangeMaxHealth(healthIncrease, false);
+            healthScript.ChangeMaxHealth(healthIncrease, false); // revert max health increase
         }
     }
 }

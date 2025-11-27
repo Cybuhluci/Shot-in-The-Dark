@@ -52,6 +52,11 @@ namespace Luci.Interactions
             //}
         }
 
+        public void ToggleInteract(bool isActive)
+        {
+            this.enabled = isActive;
+        }
+
         public void OpenDoor()
         {
             if (!isOpen)

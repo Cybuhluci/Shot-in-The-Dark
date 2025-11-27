@@ -27,4 +27,15 @@ public class PerkManager : MonoBehaviour
         GameObject icon = Instantiate(perk.perkObject, perkIconHolder.transform);
         icon.name = perk.perkName;
     }
+
+    public void RemovePerkACola(PerkACola perk)
+    {
+        Debug.Log($"Perk A Cola removed from player: {perk.perkName}");
+        // Find and destroy the perk icon in the UI
+        Transform iconTransform = perkIconHolder.transform.Find(perk.perkName);
+        if (iconTransform != null)
+        {
+            Destroy(iconTransform.gameObject);
+        }
+    }
 }

@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Melee
   weaponName: Knife
   model: {fileID: 4019129676073355648, guid: b8cfabf1b3f8cf84a89f8d5df1cd0e3d, type: 3}
+  modelEmtpy: {fileID: 4019129676073355648, guid: 2f3ff82cb600bea44876315d356a8b50, type: 3}
+  modelWallbuy: {fileID: 4019129676073355648, guid: 5dfd4161ef783fa45925345e0a32fa5d, type: 3}
+  modelBoxPickup: {fileID: 4019129676073355648, guid: 52e4ceda48a13b04c8bf5a19aba9565f, type: 3}
   damage: 150
   rank: 1
   packAPunchLevel: 0

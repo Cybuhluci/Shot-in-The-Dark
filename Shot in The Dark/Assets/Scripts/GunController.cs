@@ -97,7 +97,10 @@ public class GunController : MonoBehaviour
     private void Attack()
     {
         // TODO: Raycast or spawn projectile, play effects, etc.
-        Debug.Log($"Fired {gunData.weaponName} for {gunData.damage} damage!");
+        for (int i = 0; i < gunData.bulletsPerShot; i++)
+        {
+            Debug.Log($"Fired bullet {i + 1} of {gunData.bulletsPerShot} from {gunData.weaponName} for {gunData.damage} damage!");
+        }
     }
 
     public int GetCurrentAmmo() => currentAmmo;

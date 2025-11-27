@@ -19,4 +19,5 @@ public class MapPerks
 {
     public string Name;
     public GameObject Perk;
+    public PerkACola PerkData;
 }

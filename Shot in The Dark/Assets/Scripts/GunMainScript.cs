@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
+using TMPro;
 
 public class GunMainScript : MonoBehaviour
 {
@@ -23,13 +24,46 @@ public class GunMainScript : MonoBehaviour
 
     public int currentWeaponIndex = 0;
 
+    public TMP_Text weaponNameText; // UI Text to display weapon name
+
+    private float weaponNameVisibleTime = 0.5f;
+    private float weaponNameTimer = 0f;
+    private bool weaponNameVisible = true;
+
     private void Start()
     {
         AddNewWeapon(StartingWeaponData); // Start with 1 weapon
+        UpdateWeaponNameText();
+    }
+
+    void UpdateWeaponNameText()
+    {
+        if (weapons.Count > 0)
+        {
+            weaponNameText.text = weapons[currentWeaponIndex].weaponData.weaponName;
+            weaponNameTimer = 0f;
+            SetWeaponNameAlpha(1f);
+            weaponNameVisible = true;
+        }
+        else 
+        {
+            weaponNameText.text = "";
+            SetWeaponNameAlpha(0f);
+            weaponNameVisible = false;
+        }   
+    }
+
+    void SetWeaponNameAlpha(float alpha)
+    {
+        var c = weaponNameText.color;
+        c.a = alpha;
+        weaponNameText.color = c;
     }
 
     private void Update()
     {
+        UpdateWeaponNameText();
+
         if (playerInput.actions["Next"].triggered)
         {
             SwitchWeapon(1);
@@ -66,6 +100,17 @@ public class GunMainScript : MonoBehaviour
             var gunController = GetCurrentWeaponModel()?.GetComponent<GunController>();
             gunController?.Reload();
         }
+
+        // Fade out weapon name after a delay
+        if (weaponNameVisible)
+        {
+            weaponNameTimer += Time.deltaTime;
+            if (weaponNameTimer > weaponNameVisibleTime)
+            {
+                SetWeaponNameAlpha(0f);
+                weaponNameVisible = false;
+            }
+        }
     }
 
     public void SwitchWeapon(int direction)
@@ -78,6 +123,9 @@ public class GunMainScript : MonoBehaviour
         else if (currentWeaponIndex >= weapons.Count)
             currentWeaponIndex = 0;
         ShowOnlyCurrentWeaponModel();
+        weaponNameTimer = 0f;
+        SetWeaponNameAlpha(1f);
+        weaponNameVisible = true;
     }
 
     private void ShowOnlyCurrentWeaponModel()

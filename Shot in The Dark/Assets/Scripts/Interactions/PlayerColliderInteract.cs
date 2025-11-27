@@ -14,7 +14,10 @@ public enum InteractType
 
 public interface IInteractable
 {
+    // along with pressinteract, we need a way to also turn on and off the interaction entirely.
+    // this would be for: active mystery box, and already owned perks.
     void PressInteract();
+    void ToggleInteract(bool isActive);
 }
 
 namespace Luci.Interactions
@@ -66,8 +69,31 @@ namespace Luci.Interactions
                 IInteractable interactable = collider.GetComponent<IInteractable>();
                 if (interactable != null)
                 {
-                    interactableList.Add(interactable);
-                    interactableTransforms.Add(collider.transform);
+                    // Check if the interactable is active by calling ToggleInteract(false) and expecting a bool return, or use a public property
+                    // We'll use reflection to check for a public bool 'isActive' field or property
+                    var mb = interactable as MonoBehaviour;
+                    bool isActive = true;
+                    if (mb != null)
+                    {
+                        var isActiveField = mb.GetType().GetField("isactive");
+                        if (isActiveField != null)
+                        {
+                            isActive = (bool)isActiveField.GetValue(mb);
+                        }
+                        else
+                        {
+                            var isActiveProp = mb.GetType().GetProperty("isactive");
+                            if (isActiveProp != null)
+                            {
+                                isActive = (bool)isActiveProp.GetValue(mb);
+                            }
+                        }
+                    }
+                    if (isActive)
+                    {
+                        interactableList.Add(interactable);
+                        interactableTransforms.Add(collider.transform);
+                    }
                 }
             }
 

@@ -5,6 +5,8 @@ namespace Luci.Interactions
 {
     public class ButtonScript : MonoBehaviour, IInteractable
     {
+        public bool isactive = true;
+
         [Header("Button Events")]
         public UnityEvent LeftInteraction;
         public UnityEvent RightInteraction;
@@ -15,6 +17,11 @@ namespace Luci.Interactions
         public void PressInteract()
         {
 
+        }
+
+        public void ToggleInteract(bool isActive)
+        {
+            isactive = isActive;
         }
     }
 }

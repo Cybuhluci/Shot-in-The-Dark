@@ -2,9 +2,9 @@ using UnityEngine;
 
 namespace Luci.Interactions
 {
-
     public class PerkInteract : MonoBehaviour, IInteractable
     {
+        public bool isactive = true;
         public InteractType interactType = InteractType.Purchasable;
         public PerkACola perk; // weapon to buy, includes its name.
         public PerkManager perkScript;
@@ -14,6 +14,11 @@ namespace Luci.Interactions
         public void PressInteract()
         {
             perkScript.BuyPerk(perk, cost); // example: Juggernog, 2500 = buying Juggernog for 2500 points = Hold F for Juggernog [Cost: 2500]
+        }
+
+        public void ToggleInteract(bool isActive)
+        {
+            isactive = isActive;
         }
     }
 }

@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Gun
   weaponName: RPK
   model: {fileID: 4019129676073355648, guid: c08f0871007601f49b2227992b30e711, type: 3}
+  modelEmtpy: {fileID: 4019129676073355648, guid: 5afa76a0f4b206b4cab40fbb799dad3f, type: 3}
+  modelWallbuy: {fileID: 4019129676073355648, guid: 4de153f122a543947b80f6d5363104c0, type: 3}
+  modelBoxPickup: {fileID: 4019129676073355648, guid: 6c4557768b09fbb499a7efb822ac4982, type: 3}
   damage: 50
   rank: 1
   packAPunchLevel: 0

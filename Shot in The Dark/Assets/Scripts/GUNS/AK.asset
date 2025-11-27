@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Gun
   weaponName: AK-47
   model: {fileID: 4019129676073355648, guid: f01ab786ffc38f0449e5cddf1ae4fe54, type: 3}
+  modelEmtpy: {fileID: 4019129676073355648, guid: 876d960ac4d8b8c40a681973f883ccc6, type: 3}
+  modelWallbuy: {fileID: 4019129676073355648, guid: a36ec3e06f263674195298620a350388, type: 3}
+  modelBoxPickup: {fileID: 4019129676073355648, guid: 2fcd92ae1f18e7f47b92af6dae40b538, type: 3}
   damage: 25
   rank: 1
   packAPunchLevel: 0

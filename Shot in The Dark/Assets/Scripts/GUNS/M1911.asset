@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40d76f75546258b4a854d0ffdde9ff44, type: 3}
   m_Name: M1911
   m_EditorClassIdentifier: Assembly-CSharp::Gun
-  weaponName: 1911
+  weaponName: M1911
   model: {fileID: 4019129676073355648, guid: 78ab5020dcffd8640b37e321f9fc7ca3, type: 3}
+  modelEmtpy: {fileID: 4019129676073355648, guid: 697c9af2a763f0141a0958d276988f52, type: 3}
+  modelWallbuy: {fileID: 4019129676073355648, guid: 8c341bcd6c5b8184ebef1e9f999fd0a1, type: 3}
+  modelBoxPickup: {fileID: 4019129676073355648, guid: f197fbbbd19e67e46b4c9c05819924c6, type: 3}
   damage: 20
   rank: 1
   packAPunchLevel: 0

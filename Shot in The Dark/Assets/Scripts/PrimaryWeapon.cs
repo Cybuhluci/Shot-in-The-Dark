@@ -4,6 +4,9 @@ public abstract class PrimaryWeapon : ScriptableObject
 {
     public string weaponName;
     public GameObject model;
+    public GameObject modelEmtpy;
+    public GameObject modelWallbuy;
+    public GameObject modelBoxPickup;
 
     public int damage;
     public Rank rank;

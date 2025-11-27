@@ -1,16 +1,15 @@
 using UnityEngine;
 
 public class QuickRevive : MonoBehaviour
+// adds down feature for player - allows player to revive themself, and also do it fast.
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void OnEnable()
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDestroy()
     {
-        
+
     }
 }
