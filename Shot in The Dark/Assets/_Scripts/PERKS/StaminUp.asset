@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7a363d6d16d4ce47b54e83b3964d2fe, type: 3}
+  m_Name: StaminUp
+  m_EditorClassIdentifier: Assembly-CSharp::PerkACola
+  perkName: Speed Cola
+  perkObject: {fileID: 3088001820898586729, guid: a1ff0e4694871444385d3c4a91841144, type: 3}

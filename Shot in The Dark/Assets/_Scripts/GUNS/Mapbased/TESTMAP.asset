@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40f29800a2271354789f1533dc1402a5, type: 3}
+  m_Name: TESTMAP
+  m_EditorClassIdentifier: Assembly-CSharp::MapBasedGunScript
+  Guns:
+  - Name: 1911
+    Gun: {fileID: 11400000, guid: bd43a4224e19dbf4f9ab2238df472588, type: 2}
+  - Name: AK
+    Gun: {fileID: 11400000, guid: 40593b165d4762b4c91ff17b6bcba4b5, type: 2}
+  - Name: Barrett
+    Gun: {fileID: 11400000, guid: 73f7085e64f9faf478f778a97da8eb93, type: 2}
+  - Name: PPBizon
+    Gun: {fileID: 11400000, guid: 15e7c40ab249f9b4e92da398a6a6d835, type: 2}
+  - Name: RPK
+    Gun: {fileID: 11400000, guid: b502f84f38c1510459330cd8553a856d, type: 2}
+  - Name: Knife
+    Gun: {fileID: 11400000, guid: 9b2ba6aa8c9c574468e32de6649a9b12, type: 2}
